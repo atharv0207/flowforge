@@ -1,9 +1,30 @@
 package com.atharv.flowforge;
 
-public class Job {
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+
+    @Entity 
+    @Table(name= "jobs")
+    public class Job {
+    
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "job_type",nullable = false)
     private String jobType;
+
+    @Column(name ="payload", columnDefinition = "TEXT")
     private String payload;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private JobStatus status;
      
     public Job(){
@@ -21,7 +42,7 @@ public class Job {
     public String getJobType(){
         return jobType;
     }
-    public void setJobtype(String jobType){
+    public void setJobType(String jobType){
         this.jobType=jobType;
     }
     public String getPayload(){
@@ -29,6 +50,13 @@ public class Job {
     }
     public void setPayload(String payload){
         this.payload = payload;
+    }
+    public Long getId(){
+        return id;
+
+    }
+    public void setId(Long id){
+        this.id=id;
     }
 
 }
